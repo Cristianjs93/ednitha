@@ -1,0 +1,187 @@
+{
+  "categories": [
+    {
+      "id": "cat-textil",
+      "name": "Textil y costura",
+      "slug": "textil",
+      "description": "Proyectos con tela, hilos y detalles hechos a mano."
+    },
+    {
+      "id": "cat-papel",
+      "name": "Papel y scrapbooking",
+      "slug": "papel",
+      "description": "Tarjetas, álbumes y decoración en papel."
+    },
+    {
+      "id": "cat-decoracion",
+      "name": "Decoración del hogar",
+      "slug": "decoracion",
+      "description": "Piezas para embellecer tu espacio con estilo artesanal."
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-muneca-trapo",
+      "slug": "muneca-de-trapo",
+      "title": "Muñeca de trapo Ednitha",
+      "shortDescription": "Muñeca artesanal con vestido floral y detalles bordados a mano.",
+      "description": "Aprende a crear una muñeca de trapo con personalidad. Ideal para regalar o decorar la habitación de los más pequeños. Incluye plantilla imprimible y guía paso a paso con técnicas de relleno y acabado profesional.",
+      "categoryId": "cat-textil",
+      "difficulty": "intermedio",
+      "durationMinutes": 180,
+      "price": 349,
+      "currency": "COP",
+      "featured": true,
+      "tags": ["muñeca", "trapo", "regalo", "costura"],
+      "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg",
+      "galleryUrls": [
+        "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg",
+        "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+      ],
+      "materials": [
+        { "name": "Tela de algodón estampada", "quantity": "50 cm", "optional": false },
+        { "name": "Relleno de fibra", "quantity": "200 g", "optional": false },
+        { "name": "Hilo de bordar", "quantity": "3 colores", "optional": false },
+        { "name": "Cinta decorativa", "quantity": "30 cm", "optional": true }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "title": "Cortar el patrón",
+          "description": "Transfiere la plantilla a la tela y corta las piezas del cuerpo, brazos y vestido.",
+          "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+        },
+        {
+          "order": 2,
+          "title": "Coser y rellenar",
+          "description": "Une las piezas con puntada invisible y rellena firmemente sin deformar la figura.",
+          "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+        },
+        {
+          "order": 3,
+          "title": "Detalles finales",
+          "description": "Borda el rostro, añade el vestido y ajusta el moño en el cabello de yarn.",
+          "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+        }
+      ],
+      "createdAt": "2025-01-15T10:00:00.000Z",
+      "updatedAt": "2025-03-01T12:00:00.000Z"
+    },
+    {
+      "id": "proj-guirnalda-fieltro",
+      "slug": "guirnalda-de-fieltro",
+      "title": "Guirnalda de fieltro primavera",
+      "shortDescription": "Bandera decorativa con figuras de fieltro para fiestas y habitaciones infantiles.",
+      "description": "Un proyecto rápido y colorido. Corta figuras de flores y mariposas en fieltro, únelas con cordón y cuelga en ventanas o paredes. Perfecto para principiantes.",
+      "categoryId": "cat-decoracion",
+      "difficulty": "principiante",
+      "durationMinutes": 90,
+      "price": 199,
+      "currency": "COP",
+      "featured": true,
+      "tags": ["fieltro", "decoración", "fiesta"],
+      "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg",
+      "galleryUrls": [
+        "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+      ],
+      "materials": [
+        { "name": "Fieltro surtido", "quantity": "6 hojas A4", "optional": false },
+        { "name": "Cordón de algodón", "quantity": "2 m", "optional": false },
+        { "name": "Pegamento textil", "quantity": "1 tubo", "optional": false }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "title": "Diseñar las piezas",
+          "description": "Recorta plantillas de flores y mariposas en distintos tonos.",
+          "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+        },
+        {
+          "order": 2,
+          "title": "Ensamblar la guirnalda",
+          "description": "Pega cada figura sobre banderines de fieltro y perfora para pasar el cordón.",
+          "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+        }
+      ],
+      "createdAt": "2025-02-01T09:00:00.000Z",
+      "updatedAt": "2025-02-20T14:30:00.000Z"
+    },
+    {
+      "id": "proj-album-recuerdos",
+      "slug": "album-de-recuerdos",
+      "title": "Álbum de recuerdos scrapbook",
+      "shortDescription": "Álbum de 20 páginas con técnicas de capas, sellos y washi tape.",
+      "description": "Organiza tus fotos favoritas en un álbum hecho a mano. Aprende composición, journaling creativo y acabados con esquinas redondeadas y etiquetas personalizadas.",
+      "categoryId": "cat-papel",
+      "difficulty": "intermedio",
+      "durationMinutes": 240,
+      "price": 429,
+      "currency": "COP",
+      "featured": false,
+      "tags": ["scrapbook", "álbum", "papel"],
+      "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg",
+      "galleryUrls": [
+        "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+      ],
+      "materials": [
+        { "name": "Block de scrap 30x30 cm", "quantity": "1", "optional": false },
+        { "name": "Papel decorativo surtido", "quantity": "12 hojas", "optional": false },
+        { "name": "Washi tape", "quantity": "4 rollos", "optional": true }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "title": "Preparar la estructura",
+          "description": "Forra la portada y marca las secciones del índice.",
+          "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+        },
+        {
+          "order": 2,
+          "title": "Maquetar páginas",
+          "description": "Combina capas de papel, fotos y adornos siguiendo la regla de tres.",
+          "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+        }
+      ],
+      "createdAt": "2025-02-10T11:00:00.000Z",
+      "updatedAt": "2025-03-05T08:00:00.000Z"
+    },
+    {
+      "id": "proj-macrame-pared",
+      "slug": "panel-macrame",
+      "title": "Panel de macramé para pared",
+      "shortDescription": "Pieza bohemia de nudos básicos con flecos largos para sala o recámara.",
+      "description": "Domina los nudos lark's head, square knot y diagonal. Crea una pieza de 60 cm de ancho con hilo de algodón natural y barra de madera.",
+      "categoryId": "cat-decoracion",
+      "difficulty": "avanzado",
+      "durationMinutes": 300,
+      "price": 549,
+      "currency": "COP",
+      "featured": false,
+      "tags": ["macramé", "decoración", "pared"],
+      "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg",
+      "galleryUrls": [
+        "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+      ],
+      "materials": [
+        { "name": "Hilo de macramé 4 mm", "quantity": "80 m", "optional": false },
+        { "name": "Barra de madera 60 cm", "quantity": "1", "optional": false }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "title": "Montar la base",
+          "description": "Fija los hilos a la barra con nudo de cabeza de alondra.",
+          "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+        },
+        {
+          "order": 2,
+          "title": "Tejer el patrón",
+          "description": "Alterna nudos cuadrados y diagonales según el diagrama incluido.",
+          "imageUrl": "https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg"
+        }
+      ],
+      "createdAt": "2025-03-01T16:00:00.000Z",
+      "updatedAt": "2025-03-15T10:00:00.000Z"
+    }
+  ]
+}

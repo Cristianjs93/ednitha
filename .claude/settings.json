@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(src/**)",
+      "Read(package.json)",
+      "Read(tsconfig*.json)",
+      "Read(vite.config.ts)",
+      "Read(.env.example)"
+    ]
+  },
+  "env": {
+    "PROJECT_NAME": "ednitha",
+    "DEFAULT_LOCALE": "es"
+  },
+  "preferences": {
+    "language": "es",
+    "typescript_strict": true,
+    "architecture": "clean",
+    "test_runner": "vitest"
+  }
+}
