@@ -28,7 +28,8 @@
 
 ## Tests
 
-- Junto al módulo: `*.test.ts` en `services/` y `utils/`
+- Carpeta `tests/` en la raíz, misma estructura que `src/` (`tests/utils/`, `tests/services/`, …)
+- No colocar `*.test.ts` dentro de `src/`
 - Vitest; descripciones en español
 
 ## Evitar

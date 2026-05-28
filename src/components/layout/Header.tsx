@@ -1,22 +1,24 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NAV_LINKS } from '@/data/constants/navigation';
 import { env } from '@/utils/env';
+import { isNavLinkActive, navLinkClassName } from '@/utils/navigation';
 import { CartIconLink } from '@/components/cart/CartIconLink';
-
-const navLinks = [
-  { to: '/', label: 'Inicio' },
-  { to: '/proyectos', label: 'Proyectos' },
-  { to: '/proyectos?featured=true', label: 'Destacados' },
-] as const;
-
-function navClassName({ isActive }: { isActive: boolean }): string {
-  return `text-sm font-medium transition-colors ${
-    isActive ? 'text-brand-700' : 'text-ink-muted hover:text-brand-700'
-  }`;
-}
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname, search } = useLocation();
+
+  const renderNavLink = (link: (typeof NAV_LINKS)[number], onNavigate?: () => void) => (
+    <NavLink
+      key={link.id}
+      to={link.to}
+      className={() => navLinkClassName(isNavLinkActive(link.id, pathname, search))}
+      onClick={onNavigate}
+    >
+      {link.label}
+    </NavLink>
+  );
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-surface-elevated/90 backdrop-blur-md">
@@ -29,11 +31,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Principal">
-          {navLinks.map((link) => (
-            <NavLink key={link.to} to={link.to} className={navClassName}>
-              {link.label}
-            </NavLink>
-          ))}
+          {NAV_LINKS.map((link) => renderNavLink(link))}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -74,19 +72,15 @@ export function Header() {
           aria-label="Móvil"
         >
           <ul className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <li key={link.to}>
-                <NavLink
-                  to={link.to}
-                  className={navClassName}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </NavLink>
-              </li>
+            {NAV_LINKS.map((link) => (
+              <li key={link.id}>{renderNavLink(link, () => setMenuOpen(false))}</li>
             ))}
             <li>
-              <NavLink to="/carrito" className={navClassName} onClick={() => setMenuOpen(false)}>
+              <NavLink
+                to="/carrito"
+                className={() => navLinkClassName(pathname === '/carrito')}
+                onClick={() => setMenuOpen(false)}
+              >
                 Carrito
               </NavLink>
             </li>

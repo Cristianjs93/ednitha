@@ -30,6 +30,8 @@ src/
 ├── routes/         # React Router
 ├── providers/      # Redux Provider
 └── styles/         # Tailwind
+
+tests/              # Tests unitarios (espeja src/: utils/, services/, …)
 ```
 
 ### Flujo de datos

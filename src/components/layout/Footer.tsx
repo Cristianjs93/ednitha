@@ -21,7 +21,7 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/proyectos?featured=true" className="hover:text-white">
+              <Link to="/destacados" className="hover:text-white">
                 Destacados
               </Link>
             </li>

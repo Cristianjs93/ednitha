@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Navigate, useLocation, useSearchParams } from 'react-router-dom';
 import { ProjectGrid } from '@/components/projects/ProjectGrid';
 import {
   ProjectFilters,
@@ -11,8 +11,15 @@ import { useProjects } from '@/hooks/useProjects';
 import { useCategories } from '@/hooks/useCategories';
 
 export function ProjectsPage() {
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const categoriesState = useCategories();
+
+  if (location.pathname === '/proyectos' && searchParams.get('featured') === 'true') {
+    return <Navigate to="/destacados" replace />;
+  }
+
+  const featuredOnly = location.pathname === '/destacados';
 
   const initialFilters = useMemo<ProjectFiltersState>(
     () => ({
@@ -24,8 +31,6 @@ export function ProjectsPage() {
   );
 
   const [localFilters, setLocalFilters] = useState<ProjectFiltersState>(initialFilters);
-
-  const featuredOnly = searchParams.get('featured') === 'true';
 
   const repoFilters = useMemo((): ProjectQueryFilters | undefined => {
     const filters: ProjectQueryFilters = {
