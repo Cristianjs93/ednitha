@@ -1,48 +1,56 @@
 # Ednitha — Guía para asistentes de IA
 
-## Contexto del proyecto
+## Contexto
 
-MVP de tienda virtual de **manualidades**. Frontend estático con React + TypeScript + Tailwind. Los proyectos se leen desde `src/data/projects.json`. Imágenes vía URLs de **Cloudinary**.
+MVP de tienda virtual de **manualidades**. React + TypeScript + Tailwind. Catálogo en `src/data/projects.json`. Imágenes en Cloudinary.
 
-Placeholder global de imágenes:
+Placeholder de imagen:
 
 ```
 https://res.cloudinary.com/my-projects-cloudinary/image/upload/v1779735683/Ednitha/muneca-trapo_hq9p3g.jpg
 ```
 
-Usar `resolveImageUrl()` de `@core/constants/images` cuando una URL pueda faltar.
+Usar `resolveImageUrl()` de `@/utils/images` si falta una URL.
 
-## Arquitectura obligatoria
+## Estructura del proyecto
 
-Respetar las capas y el sentido de dependencias:
+```
+src/
+├── components/     # UI por dominio (ui, layout, cart, home, projects)
+├── pages/          # Vistas de rutas
+├── hooks/          # Lógica de estado en React
+├── store/          # Redux (carrito)
+├── services/       # Acceso a datos y WhatsApp
+├── types/          # Tipos e interfaces TypeScript
+├── utils/          # Helpers puros (format, env, cartTotals)
+├── data/           # projects.json
+├── routes/         # React Router
+├── providers/      # Context / Redux Provider
+└── styles/         # Tailwind global
+```
 
-| Capa | Puede importar de |
-|------|-------------------|
-| `domain` | Solo tipos/utilidades puras en `domain` |
-| `application` | `domain`, `core` |
-| `infrastructure` | `domain`, `core`, `data` |
-| `presentation` | `application` (vía hooks/DI), `domain` (tipos), `core`, `presentation` |
-| `app` | Todas (composición / DI) |
+Importaciones con alias `@/` → `src/`.
 
-**No** importar `infrastructure` desde `presentation` directamente. Usar `projectService` desde `@app/di/container` o hooks.
+## Convenciones
 
-## Convenciones de código
+- TypeScript strict, sin `any`
+- Props con `readonly` en componentes
+- UI en español; código en inglés
+- Estilos solo con Tailwind (`src/styles/index.css`)
 
-- TypeScript **strict**: sin `any`, preferir `readonly` en entidades y props
-- Tipos de marca para IDs: `ProjectId`, `CategoryId`
-- Resultados con `Result<T>` en repositorios y casos de uso
-- Componentes funcionales; props con `readonly`
-- Nombres en español para UI y datos de negocio; código (identificadores) en inglés
-- CSS solo con utilidades Tailwind; tokens en `src/styles/index.css` (`@theme`)
+## Datos
 
-## Al agregar un proyecto
+- Editar `src/data/projects.json`
+- `difficulty`: `principiante` | `intermedio` | `avanzado`
+- `currency`: `COP` | `USD`
 
-1. Añadir entrada en `src/data/projects.json`
-2. Validar `difficulty`: `principiante` | `intermedio` | `avanzado`
-3. Validar `currency`: `COP` | `USD`
-4. URLs de imagen completas de Cloudinary
+## Carrito
 
-## Comandos útiles
+- Redux: `src/store/cartSlice.ts`, persistencia `localStorage` (`ednitha-cart`)
+- Hook: `useCart()`
+- Checkout WhatsApp: `buildWhatsAppOrderUrl()` + `VITE_WHATSAPP_PHONE`
+
+## Comandos
 
 ```bash
 npm run dev
@@ -50,20 +58,6 @@ npm run validate
 npm run build
 ```
 
-## Carrito (Redux)
+## Estilo
 
-- Store: `src/app/store/` — slice `cart`, persistencia `localStorage` (`ednitha-cart`)
-- Hook: `useCart()` — agregar, quitar, cantidades, URL WhatsApp
-- Checkout: `WhatsAppOrderService` + `VITE_WHATSAPP_PHONE` (default `573185755283`)
-- Ruta: `/carrito`
-
-## Archivos clave
-
-- DI: `src/app/di/container.ts`
-- Datos: `src/data/projects.json`
-- Env: `src/core/config/env.ts`
-- Router: `src/app/router/AppRouter.tsx`
-
-## Reglas adicionales
-
-Ver `.claude/rules/code.style.md` para estilo detallado.
+Ver `.claude/rules/code.style.md`

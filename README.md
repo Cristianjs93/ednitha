@@ -13,35 +13,30 @@ Frontend estático profesional para un catálogo de proyectos creativos. Los dat
 | Calidad | ESLint 9 + Prettier |
 | Tests | Vitest + Testing Library |
 
-## Arquitectura (Clean Architecture)
+## Estructura del proyecto
 
-El código sigue capas con dependencias hacia el dominio (principio de inversión de dependencias / SOLID):
+Organización típica de React, fácil de navegar sin capas enterprise:
 
 ```
 src/
-├── app/              # Bootstrap, router, DI container
-├── core/             # Config (env), utilidades, tipos compartidos
-├── domain/           # Entidades y puertos (interfaces)
-├── application/      # Casos de uso y servicios de aplicación
-├── infrastructure/   # Repositorios JSON, mappers, DTOs
-├── data/             # projects.json (fuente de datos estática)
-└── presentation/     # UI: componentes, páginas, hooks
+├── components/     # UI (ui, layout, cart, home, projects)
+├── pages/          # Vistas por ruta
+├── hooks/          # Estado y efectos reutilizables
+├── store/          # Redux (carrito)
+├── services/       # Catálogo JSON y mensajes WhatsApp
+├── types/          # Interfaces TypeScript
+├── utils/          # Helpers (format, env, totales)
+├── data/           # projects.json
+├── routes/         # React Router
+├── providers/      # Redux Provider
+└── styles/         # Tailwind
 ```
-
-| Principio SOLID | Aplicación en el proyecto |
-|-----------------|---------------------------|
-| **S** — Responsabilidad única | Cada caso de uso hace una operación; componentes UI enfocados |
-| **O** — Abierto/cerrado | Nuevos repositorios (API REST) sin cambiar casos de uso |
-| **L** — Sustitución de Liskov | Implementaciones de `IProjectRepository` intercambiables |
-| **I** — Segregación de interfaces | Puertos pequeños (`IProjectRepository`, `ICategoryRepository`) |
-| **D** — Inversión de dependencias | `application` depende de puertos, no de JSON concreto |
 
 ### Flujo de datos
 
-1. `projects.json` → `JsonProjectRepository`
-2. Mapper DTO → entidad de dominio
-3. Caso de uso (`GetProjectsUseCase`) → `ProjectService`
-4. Hook (`useProjects`) → componentes React
+1. `data/projects.json` → `services/catalogService.ts`
+2. Hooks (`useProjects`, `useProject`) → páginas y componentes
+3. Carrito → Redux (`store/cartSlice`) + `useCart()`
 
 ## Requisitos
 
@@ -104,19 +99,10 @@ npm run dev
 
 Abre `http://localhost:5173` (o el puerto definido en `VITE_DEV_PORT`).
 
-### Aliases de importación
+### Alias de importación
 
-Configurados en `vite.config.ts` y `tsconfig.app.json`:
+- `@/` → `src/` (ej. `import { fetchProjects } from '@/services/catalogService'`)
 
-- `@/` → `src/`
-- `@app/`, `@core/`, `@domain/`, `@application/`, `@infrastructure/`, `@presentation/`, `@data/`
-
-Ejemplo:
-
-```ts
-import { projectService } from '@app/di/container';
-import type { Project } from '@domain/entities/Project';
-```
 
 ## Comandos de build
 
@@ -172,7 +158,7 @@ Placeholder por defecto:
 
 ## Carrito de compras
 
-- Estado global con **Redux Toolkit** (`src/app/store/cartSlice.ts`)
+- Estado global con **Redux Toolkit** (`src/store/cartSlice.ts`)
 - Persistencia en `localStorage` (clave `ednitha-cart`)
 - Agregar / quitar / cambiar cantidades desde catálogo y detalle
 - Totalización por moneda (COP / USD)
@@ -180,7 +166,7 @@ Placeholder por defecto:
 
 ## Evolución futura
 
-- Sustituir `JsonProjectRepository` por cliente HTTP sin tocar casos de uso
+- Sustituir `catalogService` por cliente HTTP manteniendo los mismos hooks
 - Carrito y checkout (nueva capa `application`)
 - CMS headless o API para sincronizar `projects.json`
 - i18n y SEO con meta dinámicos

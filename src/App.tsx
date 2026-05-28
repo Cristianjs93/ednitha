@@ -1,5 +1,5 @@
-import { AppProviders } from '@app/providers/AppProviders';
-import { AppRouter } from '@app/router/AppRouter';
+import { AppProviders } from '@/providers/AppProviders';
+import { AppRouter } from '@/routes/AppRouter';
 
 export function App() {
   return (
