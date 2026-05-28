@@ -1,13 +1,23 @@
 import { describe, it, expect } from 'vitest';
-import { isNavLinkActive } from '@/utils/navigation';
+import {
+  isFeaturedProjectsRoute,
+  isFeaturedSearch,
+  isNavLinkActive,
+} from '@/utils/navigation';
 
-describe('isNavLinkActive', () => {
-  it('marca inicio solo en /', () => {
-    expect(isNavLinkActive('home', '/', '')).toBe(true);
-    expect(isNavLinkActive('home', '/proyectos', '')).toBe(false);
+describe('navigation', () => {
+  it('isFeaturedSearch detecta el query param', () => {
+    expect(isFeaturedSearch('?featured=true')).toBe(true);
+    expect(isFeaturedSearch('')).toBe(false);
   });
 
-  it('distingue proyectos y destacados en /proyectos', () => {
+  it('isFeaturedProjectsRoute requiere pathname y query', () => {
+    expect(isFeaturedProjectsRoute('/proyectos', '?featured=true')).toBe(true);
+    expect(isFeaturedProjectsRoute('/destacados', '')).toBe(false);
+    expect(isFeaturedProjectsRoute('/proyectos', '')).toBe(false);
+  });
+
+  it('isNavLinkActive distingue proyectos y destacados', () => {
     expect(isNavLinkActive('projects', '/proyectos', '')).toBe(true);
     expect(isNavLinkActive('featured', '/proyectos', '')).toBe(false);
     expect(isNavLinkActive('featured', '/proyectos', '?featured=true')).toBe(true);

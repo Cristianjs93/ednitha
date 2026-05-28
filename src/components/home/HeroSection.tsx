@@ -23,7 +23,7 @@ export function HeroSection() {
             <Link to="/proyectos">
               <Button size="lg">Explorar proyectos</Button>
             </Link>
-            <Link to="/destacados">
+            <Link to="/proyectos?featured=true">
               <Button variant="outline" size="lg">
                 Ver destacados
               </Button>

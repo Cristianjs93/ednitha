@@ -6,8 +6,13 @@ export function navLinkClassName(active: boolean): string {
   }`;
 }
 
-function isFeaturedSearch(search: string): boolean {
+/** Vista de catálogo filtrada a proyectos destacados: /proyectos?featured=true */
+export function isFeaturedSearch(search: string): boolean {
   return new URLSearchParams(search).get('featured') === 'true';
+}
+
+export function isFeaturedProjectsRoute(pathname: string, search: string): boolean {
+  return pathname === '/proyectos' && isFeaturedSearch(search);
 }
 
 export function isNavLinkActive(id: NavLinkId, pathname: string, search: string): boolean {
@@ -17,7 +22,7 @@ export function isNavLinkActive(id: NavLinkId, pathname: string, search: string)
     case 'projects':
       return pathname === '/proyectos' && !isFeaturedSearch(search);
     case 'featured':
-      return pathname === '/proyectos' && isFeaturedSearch(search);
+      return isFeaturedProjectsRoute(pathname, search);
     default: {
       const _exhaustive: never = id;
       return _exhaustive;

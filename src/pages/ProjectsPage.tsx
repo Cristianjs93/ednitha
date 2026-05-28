@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Navigate, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { ProjectGrid } from '@/components/projects/ProjectGrid';
 import {
   ProjectFilters,
@@ -9,17 +9,14 @@ import { Spinner } from '@/components/ui/Spinner';
 import type { ProjectFilters as ProjectQueryFilters } from '@/types/project';
 import { useProjects } from '@/hooks/useProjects';
 import { useCategories } from '@/hooks/useCategories';
+import { isFeaturedProjectsRoute } from '@/utils/navigation';
 
 export function ProjectsPage() {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   const categoriesState = useCategories();
 
-  if (location.pathname === '/proyectos' && searchParams.get('featured') === 'true') {
-    return <Navigate to="/destacados" replace />;
-  }
-
-  const featuredOnly = location.pathname === '/destacados';
+  const featuredOnly = isFeaturedProjectsRoute(pathname, searchParams.toString());
 
   const initialFilters = useMemo<ProjectFiltersState>(
     () => ({
