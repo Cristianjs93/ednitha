@@ -44,6 +44,13 @@ Importaciones con alias `@/` → `src/`.
 - `difficulty`: `principiante` | `intermedio` | `avanzado`
 - `currency`: `COP` | `USD`
 
+## Prerender (SSG)
+
+- Plugin: `vite-prerender-plugin` en `vite.config.ts`
+- `src/prerender.tsx` exporta `prerender()`
+- Rutas en `scripts/getStaticRoutes.ts`
+- Meta por página: `src/utils/pageHead.ts`
+
 ## Carrito
 
 - Redux: `src/store/cartSlice.ts`, persistencia `localStorage` (`ednitha-cart`)

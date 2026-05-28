@@ -18,6 +18,10 @@ function isCartLineItem(value: unknown): value is CartLineItem {
 }
 
 export function loadCartFromStorage(): CartLineItem[] {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    return [];
+  }
+
   try {
     const raw = localStorage.getItem(CART_STORAGE_KEY);
     if (raw === null) return [];
@@ -32,5 +36,9 @@ export function loadCartFromStorage(): CartLineItem[] {
 }
 
 export function saveCartToStorage(items: readonly CartLineItem[]): void {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    return;
+  }
+
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
 }

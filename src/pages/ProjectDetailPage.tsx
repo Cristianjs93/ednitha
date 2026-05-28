@@ -4,21 +4,12 @@ import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { AddToCartButton } from '@/components/cart/AddToCartButton';
-import { Spinner } from '@/components/ui/Spinner';
 import { formatDifficulty, formatDuration, formatPrice } from '@/utils/format';
 import { env } from '@/utils/env';
 
 export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const state = useProject(slug);
-
-  if (state.status === 'loading' || state.status === 'idle') {
-    return (
-      <div className="container-app py-16">
-        <Spinner label="Cargando proyecto..." />
-      </div>
-    );
-  }
 
   if (state.status === 'error') {
     return (
@@ -32,12 +23,15 @@ export function ProjectDetailPage() {
     );
   }
 
-  if (state.status === 'success') {
-    const project = state.data;
+  if (state.status !== 'success') {
+    return null;
+  }
 
-    return (
+  const project = state.data;
+
+  return (
     <article className="pb-16">
-      <div className="bg-gradient-to-b from-brand-50 to-surface">
+      <div className="bg-linear-to-b from-brand-50 to-surface">
         <div className="container-app grid gap-10 py-10 lg:grid-cols-2 lg:items-center lg:py-14">
           <div className="overflow-hidden rounded-3xl shadow-xl">
             <CloudinaryImage
@@ -143,8 +137,5 @@ export function ProjectDetailPage() {
         </section>
       )}
     </article>
-    );
-  }
-
-  return null;
+  );
 }

@@ -55,27 +55,27 @@ function getAllProjects(): Project[] {
   return projectsCache;
 }
 
-export async function fetchProjects(filters?: ProjectFilters): Promise<Project[]> {
-  let projects = [...getAllProjects()];
+function filterProjects(projects: Project[], filters?: ProjectFilters): Project[] {
+  let result = [...projects];
 
   if (filters?.featured === true) {
-    projects = projects.filter((p) => p.featured);
+    result = result.filter((p) => p.featured);
   }
 
   if (filters?.difficulty !== undefined && filters.difficulty.length > 0) {
-    projects = projects.filter((p) => p.difficulty === filters.difficulty);
+    result = result.filter((p) => p.difficulty === filters.difficulty);
   }
 
   if (filters?.categorySlug !== undefined && filters.categorySlug.length > 0) {
     const category = catalog.categories.find((c) => c.slug === filters.categorySlug);
     if (category) {
-      projects = projects.filter((p) => p.categoryId === category.id);
+      result = result.filter((p) => p.categoryId === category.id);
     }
   }
 
   if (filters?.search !== undefined && filters.search.trim().length > 0) {
     const query = filters.search.trim().toLowerCase();
-    projects = projects.filter(
+    result = result.filter(
       (p) =>
         p.title.toLowerCase().includes(query) ||
         p.shortDescription.toLowerCase().includes(query) ||
@@ -83,10 +83,14 @@ export async function fetchProjects(filters?: ProjectFilters): Promise<Project[]
     );
   }
 
-  return projects;
+  return result;
 }
 
-export async function fetchProjectBySlug(slug: string): Promise<Project> {
+export function getProjectsSync(filters?: ProjectFilters): Project[] {
+  return filterProjects(getAllProjects(), filters);
+}
+
+export function getProjectBySlugSync(slug: string): Project {
   const trimmed = slug.trim();
   const project = getAllProjects().find((p) => p.slug === trimmed);
 
@@ -97,11 +101,23 @@ export async function fetchProjectBySlug(slug: string): Promise<Project> {
   return project;
 }
 
-export async function fetchCategories(): Promise<Category[]> {
+export function getCategoriesSync(): Category[] {
   return catalog.categories.map((dto) => ({
     id: dto.id,
     name: dto.name,
     slug: dto.slug,
     description: dto.description,
   }));
+}
+
+export async function fetchProjects(filters?: ProjectFilters): Promise<Project[]> {
+  return getProjectsSync(filters);
+}
+
+export async function fetchProjectBySlug(slug: string): Promise<Project> {
+  return getProjectBySlugSync(slug);
+}
+
+export async function fetchCategories(): Promise<Category[]> {
+  return getCategoriesSync();
 }

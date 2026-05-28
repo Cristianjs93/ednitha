@@ -47,6 +47,7 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.33.1",
     "vite": "^6.3.5",
+    "vite-prerender-plugin": "^0.5.13",
     "vitest": "^3.2.1"
   },
   "engines": {

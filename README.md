@@ -40,6 +40,15 @@ tests/              # Tests unitarios (espeja src/: utils/, services/, …)
 2. Hooks (`useProjects`, `useProject`) → páginas y componentes
 3. Carrito → Redux (`store/cartSlice`) + `useCart()`
 
+### Prerender (SSG) en build
+
+Con `vite-prerender-plugin`, `npm run build` genera HTML estático por ruta (SEO y primera carga más rápida):
+
+- `/`, `/proyectos`, `/proyectos?featured=true`
+- `/proyectos/:slug` (cada proyecto en `projects.json`)
+
+Rutas definidas en `scripts/getStaticRoutes.ts`. El render en build usa `src/prerender.tsx`; meta (`title`, `description`, Open Graph) en `src/utils/pageHead.ts`. `/carrito` sigue siendo SPA (hidratación en cliente).
+
 ## Requisitos
 
 - **Node.js** ≥ 20 (ver `.nvmrc`)
